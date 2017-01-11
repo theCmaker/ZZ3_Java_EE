@@ -10,5 +10,14 @@ package fr.isima.exercices.example;
  * 
  * @author Pierre-Loup Pissavy, Pierre Chevalier
  */
+@Singleton
 public class MyService implements IService {
 }
+
+
+/**
+ * @RequestScope -> le même objet est injecté pour toute la durée du traitement d'une requête
+ * @SessionScope -> objet de session pour l'utilisateur plutôt que singleton
+ * @Alternative
+ * @Preferred 
+ */
