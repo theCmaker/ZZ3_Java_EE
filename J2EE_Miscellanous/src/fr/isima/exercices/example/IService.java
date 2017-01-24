@@ -12,5 +12,5 @@ package fr.isima.exercices.example;
  */
 public interface IService {
 
-	int getAttr();	
+	void m();	
 }

@@ -9,16 +9,9 @@ package fr.isima.exercices.example;
  * @author Pierre-Loup Pissavy, Pierre Chevalier
  *
  */
-public class MyOtherService implements IOtherService {
+public class MyLogService {
 	
 	@Log
-	public void doSomething() {
-		
-	}
-
-	@Override @Log
-	public IService getDelegate() {
-		return null;
-	}
+	public void m() {}
 
 }

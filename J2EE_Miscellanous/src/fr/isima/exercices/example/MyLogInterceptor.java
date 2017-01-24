@@ -1,8 +1,11 @@
 package fr.isima.exercices.example;
 
 import java.lang.reflect.Method;
-
-public class LogInterceptor implements IInterceptor {
+/**
+ * @author Pierre-Loup Pissavy, Pierre Chevalier
+ *
+ */
+public class MyLogInterceptor implements IInterceptor {
 	@Inject 
 	private MyLogger log;
 	

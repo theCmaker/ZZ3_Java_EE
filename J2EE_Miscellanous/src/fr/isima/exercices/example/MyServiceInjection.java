@@ -10,16 +10,12 @@ package fr.isima.exercices.example;
  * 
  * @author Pierre-Loup Pissavy, Pierre Chevalier
  */
-@Singleton
-public class MyService implements IService {
+public class MyServiceInjection implements IService {
 	@Inject
-	EntityManager em;
+	IService service;
 	
-	@Transactionnal("REQUIRES")
-	public int getAttr() {
-		// Code transactionnel
-		return 0;
-	}
+	@Override
+	public void m() {}
 }
 
 

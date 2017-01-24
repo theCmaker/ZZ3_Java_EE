@@ -8,7 +8,11 @@ package fr.isima.exercices.example;
  *
  */
 public @interface Transactionnal {
-
-	String value();
+	static public enum Values {
+		REQUIRE,
+		REQUIRE_NEW
+	}
+	
+	Values value();
 
 }
