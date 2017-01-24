@@ -12,6 +12,14 @@ package fr.isima.exercices.example;
  */
 @Singleton
 public class MyService implements IService {
+	@Inject
+	EntityManager em;
+	
+	@Transactionnal("REQUIRES")
+	public int getAttr() {
+		// Code transactionnel
+		return 0;
+	}
 }
 
 

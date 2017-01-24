@@ -10,8 +10,13 @@ package fr.isima.exercices.example;
  *
  */
 public class MyOtherService implements IOtherService {
+	
+	@Log
+	public void doSomething() {
+		
+	}
 
-	@Override
+	@Override @Log
 	public IService getDelegate() {
 		return null;
 	}

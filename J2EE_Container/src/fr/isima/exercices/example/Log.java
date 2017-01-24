@@ -14,6 +14,7 @@ import java.lang.annotation.Target;
  *
  */
 @Target({ElementType.METHOD})
+@Behaviour(interceptor=IInterceptor.class)
 public @interface Log {
-
+	
 }

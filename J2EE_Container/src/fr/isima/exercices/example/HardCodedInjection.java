@@ -66,11 +66,15 @@ public class HardCodedInjection {
 		assertSame(service1,service2);
 	}
 	
-	interface IUseless {}
+	public class Useless implements IService {
+		public int getAttr() {
+			// TODO Auto-generated method stub
+			return 0;
+		}}
 	
 	@Test(expected = ClassNotFoundException.class)
 	public void testClassLoader() {
-		EJBContainer.inject(IUseless.class);
+		EJBContainer.inject(new Useless());
 	}
 	
 	@Test 
@@ -82,15 +86,28 @@ public class HardCodedInjection {
 	public void testCascade() {
 		assertTrue(oService1 instanceof MyPreferredService 
 				&& oService1.getDelegate() instanceof IService);
-	}
+		// + Test injection de soi-même sur soi-même
+	} 
+	
+	@Inject
+	MyLogger myLogger;
+	
+	@Inject
+	MyOtherService cmos;
 	
 	@Test
 	public void testLog() {
-		
+		cmos.getDelegate();
+		assertTrue(myLogger.contains("before getDelegate"));
+		assertTrue(myLogger.contains("after getDelegate"));
 	}
 	
 	@Test
 	public void testTransactionnal() {
-		
+		EJBContainer.inject(this);
+		assertTrue(service instanceof MyService);
+		assertEquals(service.getAttr(), 2);
+		//TODO: faire un test intéressant
 	}
+	//TODO: projet conteneur, projet tests, projet intercepteurs
 }
