@@ -12,6 +12,7 @@ import java.lang.annotation.*;
  * @author Pierre-Loup Pissavy, Pierre Chevalier
  */
 //Interdit l'usage de l'annotation sur autre chose que des champs
-@Target({ElementType.FIELD,ElementType.LOCAL_VARIABLE}) 
+@Target({ElementType.FIELD,ElementType.LOCAL_VARIABLE})
+@Retention(RetentionPolicy.RUNTIME)
 public @interface Inject {	
 }

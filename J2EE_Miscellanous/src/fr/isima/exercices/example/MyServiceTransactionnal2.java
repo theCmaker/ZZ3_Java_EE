@@ -7,6 +7,7 @@ package fr.isima.exercices.example;
 public class MyServiceTransactionnal2 implements IService {
 	
 	@Override
+	@Transactionnal(Transactionnal.Values.REQUIRE)
 	public void m() {}
 
 }

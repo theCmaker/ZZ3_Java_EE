@@ -7,7 +7,7 @@ package fr.isima.exercices.example;
  * @author Pierre-Loup Pissavy, Pierre Chevalier
  * 
  */
-@Transactionnal(Transactionnal.Values.REQUIRE)
+
 public class MyServiceTransactionnal1 implements IService {
 
 	@Inject

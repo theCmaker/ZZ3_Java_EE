@@ -20,5 +20,9 @@ public class MyServiceTransactionnalNonReqFail implements ITransaction {
 		// TODO Auto-generated method stub
 		
 	}
+	public void m() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

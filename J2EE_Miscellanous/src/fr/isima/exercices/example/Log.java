@@ -7,6 +7,8 @@
 package fr.isima.exercices.example;
 
 import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
@@ -15,6 +17,7 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.METHOD})
 @Behaviour(interceptor=IInterceptor.class)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface Log {
 	
 }
