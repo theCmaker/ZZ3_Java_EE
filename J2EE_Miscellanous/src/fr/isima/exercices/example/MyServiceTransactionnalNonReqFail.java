@@ -1,28 +1,18 @@
 package fr.isima.exercices.example;
+
+import fr.isima.exercices.example.Transactionnal.Values;
+
 /**
  * @author Pierre-Loup Pissavy, Pierre Chevalier
  *
  *
  */
-public class MyServiceTransactionnalNonReqFail implements ITransaction {
+public class MyServiceTransactionnalNonReqFail implements IService {
+
+	@Transactionnal(Values.REQUIRE_NEW)
 	@Override
-	public void begin() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void commit() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void rollback() {
-		// TODO Auto-generated method stub
-		
-	}
-	public void m() {
-		// TODO Auto-generated method stub
-		
+	public void m() throws Exception {
+		throw new Exception();
 	}
 	
 }

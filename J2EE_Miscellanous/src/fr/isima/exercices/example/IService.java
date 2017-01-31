@@ -12,5 +12,5 @@ package fr.isima.exercices.example;
  */
 public interface IService {
 
-	void m();	
+	void m() throws Exception;	
 }

@@ -45,9 +45,10 @@ public class TransactionalTest {
 	
 	/**
 	 * Transaction ratee mais non require
+	 * @throws Exception 
 	 */
 	@Test
-	public void testFailureNonRequire() {
+	public void testFailureNonRequire() throws Exception {
 		s2.m();
 		assertEquals(MyTransactionMock.getBeginCounter(),1);
 		assertEquals(MyTransactionMock.getCommitCounter(),0);
@@ -55,7 +56,7 @@ public class TransactionalTest {
 	}
 	
 	@Test(expected = Exception.class)
-	public void testFailureRequire() {
+	public void testFailureRequire() throws Exception {
 		try {
 			s3.m();
 		} catch (Exception e) {

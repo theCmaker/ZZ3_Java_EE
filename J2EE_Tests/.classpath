@@ -6,5 +6,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/J2EE_Container"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/J2EE_Interceptors"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/J2EE_Miscellanous"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
