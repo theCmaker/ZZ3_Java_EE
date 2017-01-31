@@ -5,6 +5,7 @@ package fr.isima.exercices.example;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -15,6 +16,11 @@ public class InjectionTest {
 
 	@Inject
 	private IService service; // Fonctionnalités
+	
+	@Before
+	public void before() {
+		EJBContainer.inject(this);
+	}
 	
 	@Test
 	public void testType() {
