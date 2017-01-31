@@ -3,15 +3,18 @@
  */
 package fr.isima.exercices.example;
 
+import fr.isima.exercices.example.Transactionnal.Values;
+
 /**
  * @author pipissavy
  *
  */
-public class MyServiceTransactionnalReqFail {
+public class MyServiceTransactionnalReqFail implements IService {
 
-	public void m() {
-		// TODO Auto-generated method stub
-		
+	@Transactionnal(Values.REQUIRE)
+	@Override
+	public void m() throws Exception {
+		throw new Exception();
 	}
 
 }
