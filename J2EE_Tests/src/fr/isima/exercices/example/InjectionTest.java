@@ -18,19 +18,19 @@ public class InjectionTest {
 	private IService service; // Fonctionnalités
 	
 	@Before
-	public void before() {
+	public void before() throws Exception {
 		EJBContainer.inject(this);
 	}
 	
 	@Test
-	public void testType() {
+	public void testType() throws InstantiationException, IllegalAccessException {
 		IService service = EJBContainer.get(IService.class);
 		assertNotNull(service);
 		assertTrue(service instanceof MyServiceInjection);	
 	}
 	
 	@Test
-	public void testSimple() {
+	public void testSimple() throws Exception {
 		// Résoud les injections dans l'instance
 		EJBContainer.inject(this);
 		assertTrue(service instanceof MyServiceInjection);		

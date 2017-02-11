@@ -70,9 +70,10 @@ public class TransactionalTest {
 	
 	/**
 	 * Appel de sous transaction non required
+	 * @throws Exception 
 	 */
 	@Test
-	public void testSubTransactNonRequire() {
+	public void testSubTransactNonRequire() throws Exception {
 		s4.m();
 		assertEquals(MyTransactionMock.getBeginCounter(),2);
 		assertEquals(MyTransactionMock.getCommitCounter(),1);
@@ -82,9 +83,10 @@ public class TransactionalTest {
 
 	/**
 	 * Double fail
+	 * @throws Exception 
 	 */
 	@Test(expected = Exception.class)
-	public void testSubTransactRequire() {
+	public void testSubTransactRequire() throws Exception {
 		try {
 			s5.m();
 		} catch (Exception e) {

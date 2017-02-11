@@ -16,7 +16,7 @@ public class MyServiceTransactionnalSubTransReqFail implements IService {
 
 	@Transactionnal(Values.REQUIRE)
 	@Override
-	public void m() {
+	public void m() throws Exception {
 		s2.m();
 	}
 

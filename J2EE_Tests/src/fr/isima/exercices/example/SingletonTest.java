@@ -20,7 +20,7 @@ public class SingletonTest {
 	private IServiceSingleton service1, service2;
 
 	@Test
-	public void testSingletonManuel() {		
+	public void testSingletonManuel() throws Exception {		
 		//Sauvegarde
 		IService serviceTemp = service;
 		
