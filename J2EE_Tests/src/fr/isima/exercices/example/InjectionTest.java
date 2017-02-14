@@ -23,7 +23,7 @@ public class InjectionTest {
 	}
 	
 	@Test
-	public void testType() throws InstantiationException, IllegalAccessException {
+	public void testType() throws Exception {
 		IService service = EJBContainer.get(IService.class);
 		assertNotNull(service);
 		assertTrue(service instanceof MyServiceInjection);	
@@ -32,12 +32,13 @@ public class InjectionTest {
 	@Test
 	public void testSimple() throws Exception {
 		// Résoud les injections dans l'instance
-		EJBContainer.inject(this);
 		assertTrue(service instanceof MyServiceInjection);		
 	}
 	
 	@Test
 	public void testCascade() {
+		//TODO: Monsieur c'est pas normal
+		assertNotNull(((MyServiceInjection) service).service);
 		assertTrue(service instanceof MyServiceInjection 
 				&& ((MyServiceInjection) service).service instanceof IService);
 		// + Test injection de soi-même sur soi-même

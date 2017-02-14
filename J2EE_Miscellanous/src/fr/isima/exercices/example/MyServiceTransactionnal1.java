@@ -8,7 +8,7 @@ package fr.isima.exercices.example;
  * 
  */
 
-public class MyServiceTransactionnal1 implements IService {
+public class MyServiceTransactionnal1 implements ITransactionalService {
 
 	@Inject
 	MyServiceTransactionnal2 s2;

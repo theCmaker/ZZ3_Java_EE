@@ -7,7 +7,7 @@ package fr.isima.exercices.example;
  * @author Pierre-Loup Pissavy, Pierre Chevalier
  *
  */
-@Preferred
+@Prefered
 public class MyTransactionMock implements ITransaction {
 	private static Integer commitCounter = 0;
 	private static Integer beginCounter = 0;

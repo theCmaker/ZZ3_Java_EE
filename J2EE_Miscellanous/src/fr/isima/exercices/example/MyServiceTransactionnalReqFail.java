@@ -9,7 +9,7 @@ import fr.isima.exercices.example.Transactionnal.Values;
  * @author pipissavy
  *
  */
-public class MyServiceTransactionnalReqFail implements IService {
+public class MyServiceTransactionnalReqFail implements ITransactionalService {
 
 	@Transactionnal(Values.REQUIRE)
 	@Override

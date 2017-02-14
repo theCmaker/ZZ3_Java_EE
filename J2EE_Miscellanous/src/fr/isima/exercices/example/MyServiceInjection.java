@@ -17,11 +17,3 @@ public class MyServiceInjection implements IService {
 	@Override
 	public void m() {}
 }
-
-
-/**
- * @RequestScope -> le même objet est injecté pour toute la durée du traitement d'une requête
- * @SessionScope -> objet de session pour l'utilisateur plutôt que singleton
- * @Alternative
- * @Preferred 
- */

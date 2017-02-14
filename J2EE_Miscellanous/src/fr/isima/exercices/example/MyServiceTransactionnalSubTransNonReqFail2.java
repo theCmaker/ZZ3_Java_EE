@@ -7,7 +7,7 @@ package fr.isima.exercices.example;
  * @author pipissavy
  *
  */
-public class MyServiceTransactionnalSubTransNonReqFail2 implements IService {
+public class MyServiceTransactionnalSubTransNonReqFail2 implements ITransactionalService {
 
 	/* (non-Javadoc)
 	 * @see fr.isima.exercices.example.IService#m()

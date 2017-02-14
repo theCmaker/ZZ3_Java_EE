@@ -4,8 +4,10 @@
 package fr.isima.exercices.example;
 
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -18,11 +20,16 @@ public class SingletonTest {
 
 	@Inject
 	private IServiceSingleton service1, service2;
+	
+	@Before
+	public void before() throws Exception {
+		EJBContainer.inject(this);
+	}
 
 	@Test
 	public void testSingletonManuel() throws Exception {		
 		//Sauvegarde
-		IService serviceTemp = service;
+		IServiceSingleton serviceTemp = service;
 		
 		//2eme injection
 		EJBContainer.inject(this);
@@ -32,6 +39,7 @@ public class SingletonTest {
 
 	@Test
 	public void testSingletonAuto() {
+		assertNotNull(service1);
 		assertSame(service1,service2);
 	}
 

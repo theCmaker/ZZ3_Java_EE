@@ -30,8 +30,9 @@ public class TransactionalTest {
 	MyServiceTransactionnalSubTransReqFail s5;
 	
 	@Before
-	private void before() {
+	public void before() throws Exception {
 		MyTransactionMock.reset();
+		EJBContainer.inject(this);
 	}
 	
 	@Test

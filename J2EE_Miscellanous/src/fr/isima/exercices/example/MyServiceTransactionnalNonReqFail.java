@@ -7,7 +7,7 @@ import fr.isima.exercices.example.Transactionnal.Values;
  *
  *
  */
-public class MyServiceTransactionnalNonReqFail implements IService {
+public class MyServiceTransactionnalNonReqFail implements ITransactionalService {
 
 	@Transactionnal(Values.REQUIRE_NEW)
 	@Override

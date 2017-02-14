@@ -6,7 +6,6 @@
  */
 package fr.isima.exercices.example;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -14,97 +13,93 @@ import java.util.Map;
 import java.util.Set;
 
 import org.reflections.Reflections;
-import static org.reflections.ReflectionUtils.*;
 import org.reflections.scanners.FieldAnnotationsScanner;
+import org.reflections.scanners.SubTypesScanner;
+import org.reflections.scanners.TypeAnnotationsScanner;
 
 /** Gestionnaire d'EJBs
  * 
  * @author Pierre-Loup Pissavy, Pierre Chevalier
  */
 public class EJBContainer {
-	private static boolean hasRun = false;
 
 	public EJBContainer() throws Exception {	
 	}
 	
-	public static void init() throws Exception {
-		if (!hasRun) {
-			objectMap = new HashMap<Class<?>,Class<?>>();
-			reflections = new Reflections("fr.isima.exercices.example", new FieldAnnotationsScanner());
-			Set<Class<?>> classesToBeInjected = 
-					reflections.getTypesAnnotatedWith(fr.isima.exercices.example.Inject.class);
-			for (Class<?> theClass : classesToBeInjected) {
-				if (theClass.isInterface()) {
-					// Find the correct implementation
-					Set<?> implementations = reflections.getSubTypesOf(theClass);
-					Iterator<Class<?>> iterator = ((Set<Class<?>>)implementations).iterator();
-	
-					if (implementations.size() > 1) {
-						//Many implementations
-						while (iterator.hasNext()) {
-							Class<?> object = iterator.next();
-							if (object.isAnnotationPresent(fr.isima.exercices.example.Preferred.class)) {
-								if (!objectMap.containsKey(theClass)) {							
-									objectMap.put(theClass, object);
-								} else {
-									throw new Exception("Preferred annotation set twice for " + theClass.toString());
-								}
-							}
-						}
-						
-						// No preferred implementation ?
-						if (!objectMap.containsKey(theClass)) {	
-							throw new Exception("No preferred annotation for " + theClass.toString());
-						}
-						
-					} else if (implementations.size() == 1){
-						// Only one implementation
-						objectMap.put(theClass, (Class<?>) iterator.next());
-					} else {
-						// No implementation
-						throw new Exception("No implementation for " + theClass.toString());
-					}
-				} else {
-					// 
-					objectMap.put(theClass, theClass);
-				}
-			}
-			hasRun = true;
-		}
+	public static void init(Object obj) throws Exception {
 	}
 	
 	private static Reflections reflections;
-	private static Map<Class<?>,Class<?>> objectMap;
+	private static Map<Class<?>,Object> singletonMap = new HashMap<Class<?>,Object>();
 	// Maps Interface -> Implementation
 	
 	@SuppressWarnings("unchecked")
-	public static <T> T get(Class<T> obj) throws InstantiationException, IllegalAccessException {
+	public static <T> T get(Class type) throws Exception {
+		Class<T> classToBeInstanciated = null;
+		reflections = new Reflections(type, new FieldAnnotationsScanner(), new TypeAnnotationsScanner(), new SubTypesScanner());
+		Set<Class<?>> subClasses = reflections.getSubTypesOf(type);
+		// Either subClasses contains several classes
+		if (subClasses.size() > 1) {
+			// Find the preferred implementation
+			Iterator<Class<?>> itr = subClasses.iterator();
+			while (itr.hasNext()) {
+				Class<T> cl = (Class<T>) itr.next();
+				if (cl.isAnnotationPresent(Prefered.class)) {
+					if (classToBeInstanciated == null)  {
+						classToBeInstanciated = cl;
+					} else {
+						throw new TooManyPreferedClassException();
+					}
+				}
+			}
+			if (classToBeInstanciated == null) {
+				throw new NoPreferedClassException();				
+			}
+		}
+		// Or there is only one Class
+		else if (subClasses.size() == 1) {
+			// Get the implementation
+			classToBeInstanciated = (Class<T>) subClasses.toArray()[0];			
+		}
+		// Or there is no implementation
+		else {
+			// Error
+			throw new ClassNotFoundException();
+		}
 		// Find the good implementation
 		// Create or get the right instance
 		T instance  = null;
-		if (EJBContainer.objectMap.containsKey(obj)) {
-			instance = ((T) EJBContainer.objectMap.get(obj).newInstance());
+		if (classToBeInstanciated != null) {
+			if (classToBeInstanciated.isAnnotationPresent(Singleton.class)) {
+				if (!singletonMap.containsKey(classToBeInstanciated)) {
+					singletonMap.put(classToBeInstanciated, classToBeInstanciated.getConstructor().newInstance());
+				}
+				instance = ((T) singletonMap.get(classToBeInstanciated));
+			} else {
+				instance = ((T) classToBeInstanciated.getConstructor().newInstance());
+			}
 		}
 		return instance;
 	}
 	
 	public static void inject(Object obj) throws Exception {
-		EJBContainer.init();
-		Reflections reflections = new Reflections(obj.getClass().toString(), new FieldAnnotationsScanner());
-		Set<Field> injectFields = reflections.getFieldsAnnotatedWith(fr.isima.exercices.example.Inject.class);
-		
-		System.out.println("In inject");
 		// For each field
-		for (Field field : injectFields) {
-			// Inject into the target obj
-			try {
-				field.set(obj, get(field.getType()));
-			} catch (InstantiationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		for (Field field : obj.getClass().getDeclaredFields()) {
+			// If the field is @Inject
+			if (field.isAnnotationPresent(Inject.class)) {
+				// Inject into the target obj
+				try {
+					field.setAccessible(true);
+					field.set(obj, get(field.getType()));
+					// Cascade injection
+					if (field.get(obj).getClass() != obj.getClass()) {
+						//TODO: Monsieur c'est pas normal
+						inject(field.get(obj));
+					}
+				} catch (InstantiationException e) {
+					e.printStackTrace();
+				}
 			}
-			// Cascade injection
-			//inject(field.get(obj));
 		}
 	}
 }

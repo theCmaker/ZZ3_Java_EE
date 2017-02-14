@@ -9,7 +9,7 @@ import fr.isima.exercices.example.Transactionnal.Values;
  * @author pipissavy
  *
  */
-public class MyServiceTransactionnalSubTransReqFail implements IService {
+public class MyServiceTransactionnalSubTransReqFail implements ITransactionalService {
 
 	@Inject
 	MyServiceTransactionnalSubTransReqFail2 s2;
