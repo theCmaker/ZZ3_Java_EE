@@ -7,9 +7,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import fr.isima.EJBContainer.Inject;
+import fr.isima.EJBContainer.annotations.Inject;
+import fr.isima.EJBContainer.interceptors.log.MyLogger;
 import fr.isima.EJBContainer.testclasses.log.MyLogService;
-import fr.isima.EJBContainer.testclasses.log.MyLogger;
 
 /**
  * @author Pierre-Loup Pissavy, Pierre Chevalier

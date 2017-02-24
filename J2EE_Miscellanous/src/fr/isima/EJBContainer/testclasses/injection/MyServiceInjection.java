@@ -6,7 +6,7 @@
  */
 package fr.isima.EJBContainer.testclasses.injection;
 
-import fr.isima.EJBContainer.Inject;
+import fr.isima.EJBContainer.annotations.Inject;
 
 /** Service simple
  * 

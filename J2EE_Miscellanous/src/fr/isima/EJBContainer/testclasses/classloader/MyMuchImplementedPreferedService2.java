@@ -3,7 +3,7 @@
  */
 package fr.isima.EJBContainer.testclasses.classloader;
 
-import fr.isima.EJBContainer.Prefered;
+import fr.isima.EJBContainer.annotations.Prefered;
 
 /**
  * @author pipissavy

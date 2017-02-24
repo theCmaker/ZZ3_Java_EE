@@ -7,7 +7,7 @@ package fr.isima.EJBContainer.exceptions;
  * @author pipissavy
  *
  */
-public class TooManyPreferedClassException extends Exception {
+public class TooManyPreferedClassException extends InjectionException {
 
 	/**
 	 * 

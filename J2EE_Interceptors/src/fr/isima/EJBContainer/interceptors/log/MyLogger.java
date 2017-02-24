@@ -2,12 +2,12 @@
  *  2016-17
  *  Injection de dépendances
  */
-package fr.isima.EJBContainer.testclasses.log;
+package fr.isima.EJBContainer.interceptors.log;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.isima.EJBContainer.Singleton;
+import fr.isima.EJBContainer.annotations.Singleton;
 
 /**
  * @author Pierre-Loup Pissavy, Pierre Chevalier

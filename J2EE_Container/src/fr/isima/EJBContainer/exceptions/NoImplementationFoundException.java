@@ -1,6 +1,6 @@
 package fr.isima.EJBContainer.exceptions;
 
-public class NoImplementationFoundException extends Exception {
+public class NoImplementationFoundException extends InjectionException {
 
 	/**
 	 * 

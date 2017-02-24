@@ -18,6 +18,10 @@ import org.reflections.scanners.FieldAnnotationsScanner;
 import org.reflections.scanners.SubTypesScanner;
 import org.reflections.scanners.TypeAnnotationsScanner;
 
+import fr.isima.EJBContainer.annotations.Inject;
+import fr.isima.EJBContainer.annotations.Prefered;
+import fr.isima.EJBContainer.annotations.Singleton;
+import fr.isima.EJBContainer.exceptions.InjectionException;
 import fr.isima.EJBContainer.exceptions.NoImplementationFoundException;
 import fr.isima.EJBContainer.exceptions.NoPreferedClassException;
 import fr.isima.EJBContainer.exceptions.TooManyPreferedClassException;
@@ -38,25 +42,29 @@ public class EJBContainer {
 	private static Map<Class<?>,Object> singletonMap = new HashMap<Class<?>,Object>();
 	// Maps Interface -> Implementation
 	
-	@SuppressWarnings("unchecked")
-	public static <T> T get(Class type) throws  TooManyPreferedClassException,NoPreferedClassException,NoImplementationFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	private static <T> Class<T> browseSubClasses(Set<Class<?>> subClasses) throws TooManyPreferedClassException{
 		Class<T> classToBeInstanciated = null;
-		reflections = new Reflections(type, new FieldAnnotationsScanner(), new TypeAnnotationsScanner(), new SubTypesScanner());
-		Set<Class<?>> subClasses = reflections.getSubTypesOf(type);
-		// Either subClasses contains several classes
-		if (subClasses.size() > 1) {
-			// Find the preferred implementation
-			Iterator<Class<?>> itr = subClasses.iterator();
-			while (itr.hasNext()) {
-				Class<T> cl = (Class<T>) itr.next();
-				if (cl.isAnnotationPresent(Prefered.class)) {
-					if (classToBeInstanciated == null)  {
-						classToBeInstanciated = cl;
-					} else {
-						throw new TooManyPreferedClassException();
-					}
+		// Find the preferred implementation
+		Iterator<Class<?>> itr = subClasses.iterator();
+		while (itr.hasNext()) {
+			Class<T> cl = (Class<T>) itr.next();
+			if (cl.isAnnotationPresent(Prefered.class)) {
+				if (classToBeInstanciated == null)  {
+					classToBeInstanciated = cl;
+				} else {
+					throw new TooManyPreferedClassException();
 				}
 			}
+		}
+		return classToBeInstanciated;
+	}
+	
+	private static <T> Class<T> findClassToBeInstanciated(Set<Class<?>> subClasses) throws TooManyPreferedClassException, NoPreferedClassException, NoImplementationFoundException{
+		// Find the good implementation
+		Class<T> classToBeInstanciated = null;
+		if (subClasses.size() > 1) {
+			classToBeInstanciated = browseSubClasses(subClasses);
+			
 			if (classToBeInstanciated == null) {
 				throw new NoPreferedClassException();				
 			}
@@ -71,10 +79,14 @@ public class EJBContainer {
 			// Error
 			throw new NoImplementationFoundException();
 		}
-		// Find the good implementation
+		return classToBeInstanciated;
+	}
+	
+	public static <T> T getInstanceOfClass(Class<T> classToBeInstanciated) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		// Create or get the right instance
 		T instance  = null;
 		if (classToBeInstanciated != null) {
+			// Handle singleton
 			if (classToBeInstanciated.isAnnotationPresent(Singleton.class)) {
 				if (!singletonMap.containsKey(classToBeInstanciated)) {
 					singletonMap.put(classToBeInstanciated, classToBeInstanciated.getConstructor().newInstance());
@@ -87,24 +99,48 @@ public class EJBContainer {
 		return instance;
 	}
 	
-	public static void inject(Object obj) throws Exception {
+	public static <T> T get(Class type) throws  
+		InjectionException,
+		InstantiationException, IllegalAccessException, IllegalArgumentException, 
+		InvocationTargetException, NoSuchMethodException, SecurityException 
+	{
+		reflections = new Reflections(type, new FieldAnnotationsScanner(), new TypeAnnotationsScanner(), new SubTypesScanner());
+		Set<Class<?>> subClasses = reflections.getSubTypesOf(type);
+		Class<T> classToBeInstanciated = findClassToBeInstanciated(subClasses);
+		return getInstanceOfClass(classToBeInstanciated);
+	}
+	
+	public static void handleInjectedField(Object obj, Field field) throws 
+		IllegalArgumentException, IllegalAccessException, InstantiationException, 
+		InvocationTargetException, NoSuchMethodException, SecurityException, InjectionException
+	{
+		// If the field is @Inject
+		if (field.isAnnotationPresent(Inject.class)) {
+			// Inject into the target obj
+			field.setAccessible(true);
+			field.set(obj, get(field.getType()));
+			// Cascade injection
+			if (field.get(obj).getClass() != obj.getClass()) {
+				inject(field.get(obj));
+			}
+			handleBehavior(field.get(obj).getClass());
+		}
+	
+	}
+	
+	private static void handleBehavior(Class<? extends Object> classOfInjectedField) {
+		
+		
+	}
+
+	public static void inject(Object obj) throws 
+		InjectionException,
+		InstantiationException, IllegalAccessException, IllegalArgumentException, 
+		InvocationTargetException, NoSuchMethodException, SecurityException 
+	{
 		// For each field
 		for (Field field : obj.getClass().getDeclaredFields()) {
-			// If the field is @Inject
-			if (field.isAnnotationPresent(Inject.class)) {
-				// Inject into the target obj
-				try {
-					field.setAccessible(true);
-					field.set(obj, get(field.getType()));
-					// Cascade injection
-					if (field.get(obj).getClass() != obj.getClass()) {
-						//TODO: Monsieur c'est pas normal
-						inject(field.get(obj));
-					}
-				} catch (InstantiationException e) {
-					e.printStackTrace();
-				}
-			}
+			handleInjectedField(obj, field);
 		}
 	}
 }

@@ -4,7 +4,7 @@
  *  
  *  Ajout d'annotation
  */
-package fr.isima.EJBContainer;
+package fr.isima.EJBContainer.annotations;
 import java.lang.annotation.*; 
 
 /** Annotation d'injection

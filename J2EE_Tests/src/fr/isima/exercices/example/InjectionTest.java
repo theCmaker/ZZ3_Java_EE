@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.isima.EJBContainer.EJBContainer;
-import fr.isima.EJBContainer.Inject;
+import fr.isima.EJBContainer.annotations.Inject;
 import fr.isima.EJBContainer.testclasses.injection.IServiceInjection;
 import fr.isima.EJBContainer.testclasses.injection.MyServiceInjection;
 
@@ -45,7 +45,7 @@ public class InjectionTest {
 		assertNotNull(((MyServiceInjection) service).getService());
 		assertTrue(
 				(service instanceof MyServiceInjection) 
-				&& ((MyServiceInjection) service).getService() instanceof IServiceInjection);
+				&& ((MyServiceInjection) service).getService() instanceof MyServiceInjection);
 		
 		// + Test injection de soi-même sur soi-même
 	}

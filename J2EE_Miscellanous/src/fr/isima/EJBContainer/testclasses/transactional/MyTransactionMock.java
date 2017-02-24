@@ -3,7 +3,7 @@
  */
 package fr.isima.EJBContainer.testclasses.transactional;
 
-import fr.isima.EJBContainer.Prefered;
+import fr.isima.EJBContainer.annotations.Prefered;
 
 /**
  * @author Pierre-Loup Pissavy, Pierre Chevalier

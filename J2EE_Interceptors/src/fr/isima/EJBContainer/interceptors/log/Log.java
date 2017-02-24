@@ -4,15 +4,15 @@
  *  
  *  Ajout d'annotation de log
  */
-package fr.isima.EJBContainer.testclasses.log;
+package fr.isima.EJBContainer.interceptors.log;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import fr.isima.EJBContainer.iterceptors.Behaviour;
-import fr.isima.EJBContainer.iterceptors.IInterceptor;
+import fr.isima.EJBContainer.interceptors.Behaviour;
+import fr.isima.EJBContainer.interceptors.IInterceptor;
 
 /**
  * @author Pierre-Loup Pissavy, Pierre Chevalier
@@ -21,6 +21,6 @@ import fr.isima.EJBContainer.iterceptors.IInterceptor;
 @Target({ElementType.METHOD})
 @Behaviour(interceptor=IInterceptor.class)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ILog {
+public @interface Log {
 	
 }

@@ -1,9 +1,9 @@
-package fr.isima.EJBContainer.testclasses.log;
+package fr.isima.EJBContainer.interceptors.log;
 
 import java.lang.reflect.Method;
 
-import fr.isima.EJBContainer.Inject;
-import fr.isima.EJBContainer.iterceptors.IInterceptor;
+import fr.isima.EJBContainer.annotations.Inject;
+import fr.isima.EJBContainer.interceptors.IInterceptor;
 /**
  * @author Pierre-Loup Pissavy, Pierre Chevalier
  *

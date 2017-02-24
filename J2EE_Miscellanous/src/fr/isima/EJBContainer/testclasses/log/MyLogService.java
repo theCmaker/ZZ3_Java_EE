@@ -5,13 +5,15 @@
  */
 package fr.isima.EJBContainer.testclasses.log;
 
+import fr.isima.EJBContainer.interceptors.log.Log;
+
 /**
  * @author Pierre-Loup Pissavy, Pierre Chevalier
  *
  */
 public class MyLogService {
 	
-	@ILog
+	@Log
 	public void m() {}
 
 }

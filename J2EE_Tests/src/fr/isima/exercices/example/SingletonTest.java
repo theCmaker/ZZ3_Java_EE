@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.isima.EJBContainer.EJBContainer;
-import fr.isima.EJBContainer.Inject;
+import fr.isima.EJBContainer.annotations.Inject;
 import fr.isima.EJBContainer.testclasses.singleton.IServiceSingleton;
 
 /**

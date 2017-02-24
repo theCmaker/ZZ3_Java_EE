@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.isima.EJBContainer;
+package fr.isima.EJBContainer.annotations;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
