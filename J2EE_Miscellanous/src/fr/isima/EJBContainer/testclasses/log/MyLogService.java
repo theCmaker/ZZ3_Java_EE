@@ -11,7 +11,7 @@ import fr.isima.EJBContainer.interceptors.log.Log;
  * @author Pierre-Loup Pissavy, Pierre Chevalier
  *
  */
-public class MyLogService {
+public class MyLogService implements IMyLogService {
 	
 	@Log
 	public void m() {}

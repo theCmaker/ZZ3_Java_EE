@@ -10,6 +10,11 @@ import org.junit.Test;
 
 import fr.isima.EJBContainer.EJBContainer;
 import fr.isima.EJBContainer.annotations.Inject;
+import fr.isima.EJBContainer.testclasses.transactional.IMyServiceTransactionnal1;
+import fr.isima.EJBContainer.testclasses.transactional.IMyServiceTransactionnalNonReqFail;
+import fr.isima.EJBContainer.testclasses.transactional.IMyServiceTransactionnalReqFail;
+import fr.isima.EJBContainer.testclasses.transactional.IMyServiceTransactionnalSubTransNonReqFail;
+import fr.isima.EJBContainer.testclasses.transactional.IMyServiceTransactionnalSubTransReqFail;
 import fr.isima.EJBContainer.testclasses.transactional.MyServiceTransactionnal1;
 import fr.isima.EJBContainer.testclasses.transactional.MyServiceTransactionnalNonReqFail;
 import fr.isima.EJBContainer.testclasses.transactional.MyServiceTransactionnalReqFail;
@@ -24,19 +29,19 @@ import fr.isima.EJBContainer.testclasses.transactional.MyTransactionMock;
 public class TransactionalTest {
 	
 	@Inject 
-	MyServiceTransactionnal1 s1;
+	IMyServiceTransactionnal1 s1;
 	
 	@Inject 
-	MyServiceTransactionnalNonReqFail s2;
+	IMyServiceTransactionnalNonReqFail s2;
 	
 	@Inject 
-	MyServiceTransactionnalReqFail s3;
+	IMyServiceTransactionnalReqFail s3;
 	
 	@Inject 
-	MyServiceTransactionnalSubTransNonReqFail s4;
+	IMyServiceTransactionnalSubTransNonReqFail s4;
 	
 	@Inject 
-	MyServiceTransactionnalSubTransReqFail s5;
+	IMyServiceTransactionnalSubTransReqFail s5;
 	
 	@Before
 	public void before() throws Exception {

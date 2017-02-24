@@ -10,7 +10,7 @@ import fr.isima.EJBContainer.annotations.Transactionnal.Values;
  * @author pipissavy
  *
  */
-public class MyServiceTransactionnalReqFail implements ITransactionalService {
+public class MyServiceTransactionnalReqFail implements IMyServiceTransactionnalReqFail {
 
 	@Transactionnal(Values.REQUIRE)
 	@Override

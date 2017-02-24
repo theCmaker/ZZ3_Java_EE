@@ -7,12 +7,15 @@ package fr.isima.exercices.example;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 
+import javax.xml.ws.ServiceMode;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import fr.isima.EJBContainer.EJBContainer;
 import fr.isima.EJBContainer.annotations.Inject;
 import fr.isima.EJBContainer.testclasses.singleton.IServiceSingleton;
+import fr.isima.EJBContainer.testclasses.singleton.MyServiceSingleton;
 
 /**
  * @author Pierre-Loup Pissavy, Pierre Chevalier
@@ -28,23 +31,31 @@ public class SingletonTest {
 	@Before
 	public void before() throws Exception {
 		EJBContainer.inject(this);
+		service.m();
+		service1.m();
+		service2.m();
 	}
 
 	@Test
 	public void testSingletonManuel() throws Exception {		
 		//Sauvegarde
-		IServiceSingleton serviceTemp = service;
+		MyServiceSingleton serviceTemp = (MyServiceSingleton) EJBContainer.getRealInstanceOfAService(service);
 		
 		//2eme injection
 		EJBContainer.inject(this);
+		service.m();
 		
-		assertSame(service,serviceTemp);
+		assertSame(EJBContainer.getRealInstanceOfAService(service),serviceTemp);
 	}
 
 	@Test
-	public void testSingletonAuto() {
-		assertNotNull(service1);
-		assertSame(service1,service2);
+	public void testSingletonAuto() throws Exception {
+		service1.m();
+		MyServiceSingleton realInstance1 = (MyServiceSingleton) EJBContainer.getRealInstanceOfAService(service1);
+		
+		service2.m();
+		MyServiceSingleton realInstance2 = (MyServiceSingleton) EJBContainer.getRealInstanceOfAService(service1);
+		assertSame(realInstance1,realInstance2);
 	}
 
 }

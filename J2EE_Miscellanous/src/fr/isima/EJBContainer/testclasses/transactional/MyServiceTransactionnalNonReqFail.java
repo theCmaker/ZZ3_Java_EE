@@ -8,7 +8,7 @@ import fr.isima.EJBContainer.annotations.Transactionnal.Values;
  *
  *
  */
-public class MyServiceTransactionnalNonReqFail implements ITransactionalService {
+public class MyServiceTransactionnalNonReqFail implements IMyServiceTransactionnalNonReqFail {
 
 	@Transactionnal(Values.REQUIRE_NEW)
 	@Override

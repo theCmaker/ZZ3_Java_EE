@@ -5,10 +5,13 @@ package fr.isima.exercices.example;
 
 import static org.junit.Assert.*;
 
+import java.lang.reflect.Proxy;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import fr.isima.EJBContainer.EJBContainer;
+import fr.isima.EJBContainer.MyInvocationHandler;
 import fr.isima.EJBContainer.annotations.Inject;
 import fr.isima.EJBContainer.testclasses.injection.IServiceInjection;
 import fr.isima.EJBContainer.testclasses.injection.MyServiceInjection;
@@ -25,29 +28,31 @@ public class InjectionTest {
 	@Before
 	public void before() throws Exception {
 		EJBContainer.inject(this);
+		// One method has to be called to create service instance
+		service.m();
 	}
 	
 	@Test
 	public void testType() throws Exception {
-		IServiceInjection service = EJBContainer.get(IServiceInjection.class);
+		IServiceInjection service = (IServiceInjection) EJBContainer.getInstanceFromProxy(IServiceInjection.class);
+		service.m();
 		assertNotNull(service);
-		assertTrue(service instanceof MyServiceInjection);	
+		assertTrue(EJBContainer.getRealInstanceOfAService(service) instanceof MyServiceInjection);	
 	}
 	
 	@Test
 	public void testSimple() throws Exception {
-		// Résoud les injections dans l'instance
-		assertTrue(service instanceof MyServiceInjection);		
+		assertTrue(EJBContainer.getRealInstanceOfAService(service) instanceof MyServiceInjection);		
 	}
 	
 	@Test
-	public void testCascade() {
-		assertNotNull(((MyServiceInjection) service).getService());
-		assertTrue(
-				(service instanceof MyServiceInjection) 
-				&& ((MyServiceInjection) service).getService() instanceof MyServiceInjection);
+	public void testCascade() throws Exception {
+		IServiceInjection inService = service.getService();
+		inService.m();
 		
-		// + Test injection de soi-même sur soi-même
+		assertNotNull(service.getService());
+		assertTrue(EJBContainer.getRealInstanceOfAService(inService) instanceof MyServiceInjection);
+		
 	}
 
 }

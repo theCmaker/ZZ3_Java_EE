@@ -25,11 +25,12 @@ public class PreferedTest {
 	@Before
 	public void before() throws Exception {
 		EJBContainer.inject(this);
+		service.m();
 	}
 	
 	@Test
 	public void test() {
-		assertTrue(service instanceof MyPreferredService);
+		assertTrue(EJBContainer.getRealInstanceOfAService(service) instanceof MyPreferredService);
 	}
 
 }

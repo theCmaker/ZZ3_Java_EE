@@ -8,8 +8,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import fr.isima.EJBContainer.annotations.Inject;
+import fr.isima.EJBContainer.interceptors.log.IMyLogger;
 import fr.isima.EJBContainer.interceptors.log.MyLogger;
-import fr.isima.EJBContainer.testclasses.log.MyLogService;
+import fr.isima.EJBContainer.testclasses.log.IMyLogService;
 
 /**
  * @author Pierre-Loup Pissavy, Pierre Chevalier
@@ -17,10 +18,10 @@ import fr.isima.EJBContainer.testclasses.log.MyLogService;
  */
 public class LogTest {	
 	@Inject
-	MyLogger myLogger;
+	IMyLogger myLogger;
 	
 	@Inject
-	MyLogService service;
+	IMyLogService service;
 	
 	@Test
 	public void test() {

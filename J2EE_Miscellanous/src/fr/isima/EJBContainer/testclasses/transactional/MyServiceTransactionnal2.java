@@ -7,7 +7,7 @@ import fr.isima.EJBContainer.annotations.Transactionnal.Values;
  * @author Pierre-Loup Pissavy, Pierre Chevalier
  *
  */
-public class MyServiceTransactionnal2 implements ITransactionalService {
+public class MyServiceTransactionnal2 implements IMyServiceTransactionnal2 {
 	
 	@Override
 	@Transactionnal(Transactionnal.Values.REQUIRE)

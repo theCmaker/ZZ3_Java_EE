@@ -12,10 +12,10 @@ import fr.isima.EJBContainer.annotations.Transactionnal.Values;
  * 
  */
 
-public class MyServiceTransactionnal1 implements ITransactionalService {
+public class MyServiceTransactionnal1 implements IMyServiceTransactionnal1 {
 
 	@Inject
-	MyServiceTransactionnal2 s2;
+	IMyServiceTransactionnal2 s2;
 
 	@Transactionnal(Transactionnal.Values.REQUIRE)
 	@Override

@@ -1,5 +1,6 @@
 package fr.isima.EJBContainer.testclasses.injection;
 
 public interface IServiceInjection {
-	void m() throws Exception;
+	void m();
+	public IServiceInjection getService();
 }

@@ -5,6 +5,7 @@ package fr.isima.exercices.example;
 
 import org.junit.Test;
 
+import fr.isima.EJBContainer.EJBClassFinder;
 import fr.isima.EJBContainer.EJBContainer;
 import fr.isima.EJBContainer.exceptions.NoImplementationFoundException;
 import fr.isima.EJBContainer.exceptions.NoPreferedClassException;
@@ -21,17 +22,17 @@ import fr.isima.EJBContainer.testclasses.classloader.INotImplementedService;
 public class ClassLoaderTest {	
 	@Test(expected = NoImplementationFoundException.class)
 	public void testClassLoaderClassNotFound() throws Exception {
-		EJBContainer.get(INotImplementedService.class);
+		EJBClassFinder.findClassToBeInstanciated(INotImplementedService.class);
 	}
 	
 	@Test(expected = TooManyPreferedClassException.class)
 	public void testClassLoaderClassTooMany() throws Exception {
-		EJBContainer.get(IMuchImplementedPrefered.class);
+		EJBClassFinder.findClassToBeInstanciated(IMuchImplementedPrefered.class);
 	}
 	
 	@Test(expected = NoPreferedClassException.class)
 	public void testClassLoaderNoPreferred() throws Exception {
-		EJBContainer.get(IMuchImplemented.class);
+		EJBClassFinder.findClassToBeInstanciated(IMuchImplemented.class);
 	}
 	
 }

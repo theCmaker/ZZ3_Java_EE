@@ -11,10 +11,10 @@ import fr.isima.EJBContainer.annotations.Transactionnal.Values;
  * @author pipissavy
  *
  */
-public class MyServiceTransactionnalSubTransNonReqFail implements ITransactionalService{
+public class MyServiceTransactionnalSubTransNonReqFail implements IMyServiceTransactionnalSubTransNonReqFail{
 	
 	@Inject
-	MyServiceTransactionnalSubTransNonReqFail2 s2;
+	IMyServiceTransactionnalSubTransNonReqFail2 s2;
 
 	@Transactionnal(Values.REQUIRE)
 	@Override

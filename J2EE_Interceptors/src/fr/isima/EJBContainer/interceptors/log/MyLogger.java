@@ -14,7 +14,7 @@ import fr.isima.EJBContainer.annotations.Singleton;
  *
  */
 @Singleton
-public class MyLogger {
+public class MyLogger implements IMyLogger {
 	private List<String> log = new ArrayList<String>();
 	
 	public boolean contains(String s) {
