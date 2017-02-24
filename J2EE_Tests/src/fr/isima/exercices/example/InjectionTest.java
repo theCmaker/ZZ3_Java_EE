@@ -8,6 +8,11 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.isima.EJBContainer.EJBContainer;
+import fr.isima.EJBContainer.Inject;
+import fr.isima.EJBContainer.testclasses.injection.IServiceInjection;
+import fr.isima.EJBContainer.testclasses.injection.MyServiceInjection;
+
 /**
  * @author Pierre-Loup Pissavy, Pierre Chevalier
  *
@@ -15,7 +20,7 @@ import org.junit.Test;
 public class InjectionTest {
 
 	@Inject
-	private IService service; // Fonctionnalités
+	private IServiceInjection service; // Fonctionnalités
 	
 	@Before
 	public void before() throws Exception {
@@ -24,7 +29,7 @@ public class InjectionTest {
 	
 	@Test
 	public void testType() throws Exception {
-		IService service = EJBContainer.get(IService.class);
+		IServiceInjection service = EJBContainer.get(IServiceInjection.class);
 		assertNotNull(service);
 		assertTrue(service instanceof MyServiceInjection);	
 	}
@@ -37,10 +42,11 @@ public class InjectionTest {
 	
 	@Test
 	public void testCascade() {
-		//TODO: Monsieur c'est pas normal
-		assertNotNull(((MyServiceInjection) service).service);
-		assertTrue(service instanceof MyServiceInjection 
-				&& ((MyServiceInjection) service).service instanceof IService);
+		assertNotNull(((MyServiceInjection) service).getService());
+		assertTrue(
+				(service instanceof MyServiceInjection) 
+				&& ((MyServiceInjection) service).getService() instanceof IServiceInjection);
+		
 		// + Test injection de soi-même sur soi-même
 	}
 

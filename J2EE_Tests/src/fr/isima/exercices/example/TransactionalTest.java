@@ -8,6 +8,15 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.isima.EJBContainer.EJBContainer;
+import fr.isima.EJBContainer.Inject;
+import fr.isima.EJBContainer.testclasses.transactional.MyServiceTransactionnal1;
+import fr.isima.EJBContainer.testclasses.transactional.MyServiceTransactionnalNonReqFail;
+import fr.isima.EJBContainer.testclasses.transactional.MyServiceTransactionnalReqFail;
+import fr.isima.EJBContainer.testclasses.transactional.MyServiceTransactionnalSubTransNonReqFail;
+import fr.isima.EJBContainer.testclasses.transactional.MyServiceTransactionnalSubTransReqFail;
+import fr.isima.EJBContainer.testclasses.transactional.MyTransactionMock;
+
 /**
  * @author Pierre-Loup Pissavy, Pierre Chevalier
  *
