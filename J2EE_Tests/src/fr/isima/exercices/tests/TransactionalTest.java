@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.isima.exercices.example;
+package fr.isima.exercices.tests;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import fr.isima.EJBContainer.EJBContainer;
 import fr.isima.EJBContainer.annotations.Inject;
+import fr.isima.EJBContainer.interceptors.transaction.MyTransactionMock;
 import fr.isima.EJBContainer.testclasses.transactional.IMyServiceTransactionnal1;
 import fr.isima.EJBContainer.testclasses.transactional.IMyServiceTransactionnalNonReqFail;
 import fr.isima.EJBContainer.testclasses.transactional.IMyServiceTransactionnalReqFail;
@@ -20,7 +21,6 @@ import fr.isima.EJBContainer.testclasses.transactional.MyServiceTransactionnalNo
 import fr.isima.EJBContainer.testclasses.transactional.MyServiceTransactionnalReqFail;
 import fr.isima.EJBContainer.testclasses.transactional.MyServiceTransactionnalSubTransNonReqFail;
 import fr.isima.EJBContainer.testclasses.transactional.MyServiceTransactionnalSubTransReqFail;
-import fr.isima.EJBContainer.testclasses.transactional.MyTransactionMock;
 
 /**
  * @author Pierre-Loup Pissavy, Pierre Chevalier

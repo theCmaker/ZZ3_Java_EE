@@ -8,9 +8,9 @@ import fr.isima.EJBContainer.interceptors.IInterceptor;
  * @author Pierre-Loup Pissavy, Pierre Chevalier
  *
  */
-public class MyLogInterceptor implements IInterceptor {
+public class LogInterceptor implements IInterceptor {
 	@Inject 
-	private IMyLogger log;
+	private ILogger log;
 	
 	@Override
 	public void before(Object obj, Method method, Object ... params) {
@@ -18,7 +18,12 @@ public class MyLogInterceptor implements IInterceptor {
 	}
 	
 	@Override
-	public void after(Object obj, Method method, Object ... params) {
+	public void afterNoError(Object obj, Method method, Object ... params) {
 		log.log("after " + method.getName());
+	}
+
+	@Override
+	public void afterError(Object obj, Method method, Object... params) {
+		log.log("error in " + method.getName());
 	}
 }

@@ -9,7 +9,7 @@ package fr.isima.EJBContainer;
 import java.lang.reflect.Field;
 import java.lang.reflect.Proxy;
 import fr.isima.EJBContainer.annotations.Inject;
-import fr.isima.EJBContainer.exceptions.serviceIsNotAnInterfaceException;
+import fr.isima.EJBContainer.exceptions.ServiceIsNotAnInterfaceException;
 
 /** Gestionnaire d'EJBs
  * 
@@ -17,21 +17,21 @@ import fr.isima.EJBContainer.exceptions.serviceIsNotAnInterfaceException;
  */
 public class EJBContainer {
 
-	public static <T> Object getInstanceFromProxy(Class<T> interfaceToInject) throws serviceIsNotAnInterfaceException
+	public static <T> Object getInstanceFromProxy(Class<T> interfaceToInject) throws ServiceIsNotAnInterfaceException
 	{
 		Object instance = null;
 		if (interfaceToInject.isInterface()){
 			instance = Proxy.newProxyInstance(
 					interfaceToInject.getClassLoader(),
 					new Class<?>[] {interfaceToInject},
-					new MyInvocationHandler());	
+					new EJBInvocationHandler());	
 		} else {
-			throw new serviceIsNotAnInterfaceException();
+			throw new ServiceIsNotAnInterfaceException();
 		}
 		return instance;
 	}
 	
-	public static void handleInjectedField(Object obj, Field field) throws IllegalArgumentException, IllegalAccessException, serviceIsNotAnInterfaceException
+	public static void handleInjectedField(Object obj, Field field) throws IllegalArgumentException, IllegalAccessException, ServiceIsNotAnInterfaceException
 	{
 		// If the field is @Inject
 		if (field.isAnnotationPresent(Inject.class)) {
@@ -42,7 +42,7 @@ public class EJBContainer {
 	
 	}
 
-	public static void inject(Object obj) throws IllegalArgumentException, IllegalAccessException, serviceIsNotAnInterfaceException
+	public static void inject(Object obj) throws IllegalArgumentException, IllegalAccessException, ServiceIsNotAnInterfaceException
 	{
 		// For each field
 		for (Field field : obj.getClass().getDeclaredFields()) {
@@ -51,6 +51,6 @@ public class EJBContainer {
 	}
 	
 	public static Object getRealInstanceOfAService(Object service){
-		return ((MyInvocationHandler)Proxy.getInvocationHandler(service)).getIntanceCourante();
+		return ((EJBInvocationHandler)Proxy.getInvocationHandler(service)).getIntanceCourante();
 	}
 }

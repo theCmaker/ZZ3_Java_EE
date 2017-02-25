@@ -12,5 +12,6 @@ import java.lang.reflect.Method;
  */
 public interface IInterceptor {
 	public void before(Object obj, Method method, Object ... params);
-	public void after(Object obj, Method method, Object ... params);
+	public void afterNoError(Object obj, Method method, Object ... params);
+	public void afterError(Object obj, Method method, Object ... params) throws Exception;
 }

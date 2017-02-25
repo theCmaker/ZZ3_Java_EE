@@ -5,7 +5,7 @@
  */
 package fr.isima.EJBContainer.testclasses.log;
 
-import fr.isima.EJBContainer.interceptors.log.Log;
+import fr.isima.EJBContainer.interceptors.log.annotations.Log;
 
 /**
  * @author Pierre-Loup Pissavy, Pierre Chevalier

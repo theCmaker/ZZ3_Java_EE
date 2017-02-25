@@ -14,8 +14,7 @@ public class MyServiceTransactionnalSubTransReqFail2 implements IMyServiceTransa
 	 */
 	@Override
 	public void m() throws Exception {
-		// TODO Auto-generated method stub
-
+		throw new Exception();
 	}
 
 }

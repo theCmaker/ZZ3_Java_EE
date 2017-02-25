@@ -14,7 +14,7 @@ import fr.isima.EJBContainer.annotations.Singleton;
  *
  */
 @Singleton
-public class MyLogger implements IMyLogger {
+public class Logger implements ILogger {
 	private List<String> log = new ArrayList<String>();
 	
 	@Override

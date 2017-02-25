@@ -14,7 +14,7 @@ public class MyServiceTransactionnalSubTransNonReqFail2 implements IMyServiceTra
 	 */
 	@Override
 	public void m() throws Exception {
-
+		throw new Exception();
 	}
 
 }

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.isima.exercices.example;
+package fr.isima.exercices.tests;
 
 import static org.junit.Assert.assertTrue;
 

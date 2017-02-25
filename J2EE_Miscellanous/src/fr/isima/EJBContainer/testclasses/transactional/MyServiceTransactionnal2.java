@@ -1,8 +1,5 @@
 package fr.isima.EJBContainer.testclasses.transactional;
 
-import fr.isima.EJBContainer.annotations.Transactionnal;
-import fr.isima.EJBContainer.annotations.Transactionnal.Values;
-
 /**
  * @author Pierre-Loup Pissavy, Pierre Chevalier
  *
@@ -10,7 +7,6 @@ import fr.isima.EJBContainer.annotations.Transactionnal.Values;
 public class MyServiceTransactionnal2 implements IMyServiceTransactionnal2 {
 	
 	@Override
-	@Transactionnal(Transactionnal.Values.REQUIRE)
 	public void m() {}
 
 }

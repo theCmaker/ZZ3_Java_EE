@@ -1,6 +1,6 @@
 package fr.isima.EJBContainer.exceptions;
 
-public class serviceIsNotAnInterfaceException extends InjectionException {
+public class ServiceIsNotAnInterfaceException extends InjectionException {
 
 	/**
 	 * 

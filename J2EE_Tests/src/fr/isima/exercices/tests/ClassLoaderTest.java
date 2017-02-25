@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.isima.exercices.example;
+package fr.isima.exercices.tests;
 
 import org.junit.Test;
 

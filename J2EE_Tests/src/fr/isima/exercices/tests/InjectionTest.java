@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.isima.exercices.example;
+package fr.isima.exercices.tests;
 
 import static org.junit.Assert.*;
 
@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.isima.EJBContainer.EJBContainer;
-import fr.isima.EJBContainer.MyInvocationHandler;
+import fr.isima.EJBContainer.EJBInvocationHandler;
 import fr.isima.EJBContainer.annotations.Inject;
 import fr.isima.EJBContainer.testclasses.injection.IServiceInjection;
 import fr.isima.EJBContainer.testclasses.injection.MyServiceInjection;

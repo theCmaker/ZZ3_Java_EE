@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.isima.exercices.example;
+package fr.isima.exercices.tests;
 
 import static org.junit.Assert.*;
 
@@ -10,8 +10,8 @@ import org.junit.Test;
 
 import fr.isima.EJBContainer.EJBContainer;
 import fr.isima.EJBContainer.annotations.Inject;
-import fr.isima.EJBContainer.interceptors.log.IMyLogger;
-import fr.isima.EJBContainer.interceptors.log.MyLogger;
+import fr.isima.EJBContainer.interceptors.log.ILogger;
+import fr.isima.EJBContainer.interceptors.log.Logger;
 import fr.isima.EJBContainer.testclasses.log.IMyLogService;
 
 /**
@@ -20,7 +20,7 @@ import fr.isima.EJBContainer.testclasses.log.IMyLogService;
  */
 public class LogTest {	
 	@Inject
-	IMyLogger myLogger;
+	ILogger myLogger;
 	
 	@Inject
 	IMyLogService service;
