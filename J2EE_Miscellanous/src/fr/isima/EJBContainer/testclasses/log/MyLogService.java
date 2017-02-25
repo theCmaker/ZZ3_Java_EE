@@ -13,7 +13,7 @@ import fr.isima.EJBContainer.interceptors.log.Log;
  */
 public class MyLogService implements IMyLogService {
 	
-	@Log
+	
 	public void m() {}
 
 }

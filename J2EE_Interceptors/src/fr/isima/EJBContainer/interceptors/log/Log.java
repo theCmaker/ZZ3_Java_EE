@@ -12,15 +12,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import fr.isima.EJBContainer.interceptors.Behaviour;
-import fr.isima.EJBContainer.interceptors.IInterceptor;
 
 /**
  * @author Pierre-Loup Pissavy, Pierre Chevalier
  *
  */
 @Target({ElementType.METHOD})
-@Behaviour(interceptor=IInterceptor.class)
 @Retention(RetentionPolicy.RUNTIME)
+@Behaviour(interceptor=MyLogInterceptor.class)
 public @interface Log {
 	
 }

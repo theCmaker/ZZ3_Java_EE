@@ -10,7 +10,7 @@ import fr.isima.EJBContainer.interceptors.IInterceptor;
  */
 public class MyLogInterceptor implements IInterceptor {
 	@Inject 
-	private MyLogger log;
+	private IMyLogger log;
 	
 	@Override
 	public void before(Object obj, Method method, Object ... params) {

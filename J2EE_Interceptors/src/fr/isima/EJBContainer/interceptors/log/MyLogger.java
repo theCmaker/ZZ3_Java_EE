@@ -17,10 +17,12 @@ import fr.isima.EJBContainer.annotations.Singleton;
 public class MyLogger implements IMyLogger {
 	private List<String> log = new ArrayList<String>();
 	
+	@Override
 	public boolean contains(String s) {
 		return log.contains(s);
 	}
 	
+	@Override
 	public void log(String s) {
 		log.add(s);
 	}
