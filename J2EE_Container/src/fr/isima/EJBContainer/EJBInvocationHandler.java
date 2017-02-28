@@ -1,10 +1,7 @@
 package fr.isima.EJBContainer;
 
 import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
-import fr.isima.EJBContainer.exceptions.InjectionException;
 
 public class EJBInvocationHandler implements InvocationHandler {
 	// The only way to have the instance use in the handler is to save it in a attribute

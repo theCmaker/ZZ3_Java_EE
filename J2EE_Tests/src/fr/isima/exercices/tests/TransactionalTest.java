@@ -16,11 +16,6 @@ import fr.isima.EJBContainer.testclasses.transactional.IMyServiceTransactionnalN
 import fr.isima.EJBContainer.testclasses.transactional.IMyServiceTransactionnalReqFail;
 import fr.isima.EJBContainer.testclasses.transactional.IMyServiceTransactionnalSubTransNonReqFail;
 import fr.isima.EJBContainer.testclasses.transactional.IMyServiceTransactionnalSubTransReqFail;
-import fr.isima.EJBContainer.testclasses.transactional.MyServiceTransactionnal1;
-import fr.isima.EJBContainer.testclasses.transactional.MyServiceTransactionnalNonReqFail;
-import fr.isima.EJBContainer.testclasses.transactional.MyServiceTransactionnalReqFail;
-import fr.isima.EJBContainer.testclasses.transactional.MyServiceTransactionnalSubTransNonReqFail;
-import fr.isima.EJBContainer.testclasses.transactional.MyServiceTransactionnalSubTransReqFail;
 
 /**
  * @author Pierre-Loup Pissavy, Pierre Chevalier

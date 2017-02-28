@@ -32,6 +32,7 @@ public class EJBInterceptorsHandler {
 		return listInterceptors;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static Object executeMethodsWithInterceptors(
 		Class<?> classToBeInstanciated,
 		Object instanceCourante, Method currentUsedMethod, Object[] args ) throws Exception {

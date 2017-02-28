@@ -6,7 +6,6 @@ package fr.isima.exercices.tests;
 import org.junit.Test;
 
 import fr.isima.EJBContainer.EJBClassFinder;
-import fr.isima.EJBContainer.EJBContainer;
 import fr.isima.EJBContainer.exceptions.NoImplementationFoundException;
 import fr.isima.EJBContainer.exceptions.NoPreferedClassException;
 import fr.isima.EJBContainer.exceptions.TooManyPreferedClassException;

@@ -11,6 +11,7 @@ public class EJBInstanceFactory {
 	private static Map<Class<?>,Object> singletonMap = new HashMap<Class<?>,Object>();
 	// Maps Interface -> Implementation
 		
+	@SuppressWarnings("unchecked")
 	public static <T> T getInstanceOfClass(Class<T> classToBeInstanciated) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, InjectionException{
 		// Create or get the right instance
 		T instance  = null;

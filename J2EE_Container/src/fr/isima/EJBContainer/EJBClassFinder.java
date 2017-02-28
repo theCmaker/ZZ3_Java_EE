@@ -33,6 +33,7 @@ public class EJBClassFinder {
 		return classToBeInstanciated;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static <T> Class<? extends T> findClassToBeInstanciated(Class<T> interfaceToInject) throws TooManyPreferedClassException, NoPreferedClassException, NoImplementationFoundException{
 		reflections = new Reflections(interfaceToInject, new FieldAnnotationsScanner(), new TypeAnnotationsScanner(), new SubTypesScanner());
 		Set<Class<? extends T>> implementations = reflections.getSubTypesOf(interfaceToInject);

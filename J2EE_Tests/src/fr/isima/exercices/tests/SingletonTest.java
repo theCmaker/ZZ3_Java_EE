@@ -4,10 +4,7 @@
 package fr.isima.exercices.tests;
 
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
-
-import javax.xml.ws.ServiceMode;
 
 import org.junit.Before;
 import org.junit.Test;
