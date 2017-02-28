@@ -1,6 +1,3 @@
-/**
- * 
- */
 package fr.isima.exercices.tests;
 
 import static org.junit.Assert.assertEquals;
@@ -17,9 +14,8 @@ import fr.isima.EJBContainer.testclasses.transactional.IMyServiceTransactionnalR
 import fr.isima.EJBContainer.testclasses.transactional.IMyServiceTransactionnalSubTransNonReqFail;
 import fr.isima.EJBContainer.testclasses.transactional.IMyServiceTransactionnalSubTransReqFail;
 
-/**
+/** Tests sur les transactions (etat et nombre)
  * @author Pierre-Loup Pissavy, Pierre Chevalier
- *
  */
 public class TransactionalTest {
 	
@@ -106,8 +102,5 @@ public class TransactionalTest {
 			assertEquals(MyTransactionMock.getCommitCounter(),0);
 			assertEquals(MyTransactionMock.getRollbackCounter(),2);
 		}
-	}
-	
-	
-	
+	}	
 }

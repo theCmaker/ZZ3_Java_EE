@@ -20,9 +20,6 @@ public class EJBInterceptorsHandler {
 		Vector<Class<? extends IInterceptor>> listClassesInterceptors = new Vector<Class<? extends IInterceptor>>();
 		Vector<Object> listInterceptors = new Vector<Object>();
 		
-		for (Annotation annotation : classToBeInstanciated.getAnnotations()) {
-			saveBehavioursClassesOfAnnotation(listClassesInterceptors,annotation);
-		}
 		for (Annotation annotation : currentUsedMethod.getAnnotations()) {
 			saveBehavioursClassesOfAnnotation(listClassesInterceptors,annotation);
 		}

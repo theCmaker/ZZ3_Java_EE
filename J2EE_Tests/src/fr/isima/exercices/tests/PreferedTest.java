@@ -1,6 +1,3 @@
-/**
- * 
- */
 package fr.isima.exercices.tests;
 
 import static org.junit.Assert.assertTrue;
@@ -13,9 +10,8 @@ import fr.isima.EJBContainer.annotations.Inject;
 import fr.isima.EJBContainer.testclasses.prefered.IPreferredService;
 import fr.isima.EJBContainer.testclasses.prefered.MyPreferredService;
 
-/**
+/** Test de préférence d'implémentation
  * @author Pierre-Loup Pissavy, Pierre Chevalier
- *
  */
 public class PreferedTest {
 	
@@ -32,5 +28,4 @@ public class PreferedTest {
 	public void test() {
 		assertTrue(EJBContainer.getRealInstanceOfAService(service) instanceof MyPreferredService);
 	}
-
 }

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package fr.isima.exercices.tests;
 
 import org.junit.Test;
@@ -13,10 +10,8 @@ import fr.isima.EJBContainer.testclasses.classloader.IMuchImplemented;
 import fr.isima.EJBContainer.testclasses.classloader.IMuchImplementedPrefered;
 import fr.isima.EJBContainer.testclasses.classloader.INotImplementedService;
 
-
-/**
+/** Tests sur le ClassLoader
  * @author Pierre-Loup Pissavy, Pierre Chevalier
- *
  */
 public class ClassLoaderTest {	
 	@Test(expected = NoImplementationFoundException.class)
@@ -32,6 +27,5 @@ public class ClassLoaderTest {
 	@Test(expected = NoPreferedClassException.class)
 	public void testClassLoaderNoPreferred() throws Exception {
 		EJBClassFinder.findClassToBeInstanciated(IMuchImplemented.class);
-	}
-	
+	}	
 }

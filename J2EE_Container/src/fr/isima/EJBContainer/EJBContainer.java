@@ -1,6 +1,6 @@
 /** ISIMA ZZ3 F2
  *  2016-17
- *  Injection de dÃ©pendances
+ *  Injection de dépendances
  *  
  *  Conteneur d'EJBs
  */
@@ -12,7 +12,6 @@ import fr.isima.EJBContainer.annotations.Inject;
 import fr.isima.EJBContainer.exceptions.ServiceIsNotAnInterfaceException;
 
 /** Gestionnaire d'EJBs
- * 
  * @author Pierre-Loup Pissavy, Pierre Chevalier
  */
 public class EJBContainer {
@@ -31,7 +30,7 @@ public class EJBContainer {
 		return instance;
 	}
 	
-	public static void handleInjectedField(Object obj, Field field) throws IllegalArgumentException, IllegalAccessException, ServiceIsNotAnInterfaceException
+	private static void handleInjectedField(Object obj, Field field) throws IllegalArgumentException, IllegalAccessException, ServiceIsNotAnInterfaceException
 	{
 		// If the field is @Inject
 		if (field.isAnnotationPresent(Inject.class)) {

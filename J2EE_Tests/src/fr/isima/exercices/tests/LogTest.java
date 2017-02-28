@@ -1,6 +1,3 @@
-/**
- * 
- */
 package fr.isima.exercices.tests;
 
 import static org.junit.Assert.*;
@@ -13,9 +10,8 @@ import fr.isima.EJBContainer.annotations.Inject;
 import fr.isima.EJBContainer.interceptors.log.ILogger;
 import fr.isima.EJBContainer.testclasses.log.IMyLogService;
 
-/**
+/** Tests de log (+ intercepteurs)
  * @author Pierre-Loup Pissavy, Pierre Chevalier
- *
  */
 public class LogTest {	
 	@Inject
@@ -35,5 +31,4 @@ public class LogTest {
 		assertTrue(myLogger.contains("before m"));
 		assertTrue(myLogger.contains("after m"));
 	}
-
 }

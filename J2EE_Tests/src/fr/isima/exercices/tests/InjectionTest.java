@@ -1,6 +1,3 @@
-/**
- * 
- */
 package fr.isima.exercices.tests;
 
 import static org.junit.Assert.*;
@@ -13,9 +10,8 @@ import fr.isima.EJBContainer.annotations.Inject;
 import fr.isima.EJBContainer.testclasses.injection.IServiceInjection;
 import fr.isima.EJBContainer.testclasses.injection.MyServiceInjection;
 
-/**
- * @author Pierre-Loup Pissavy, Pierre Chevalier
- *
+/** Tests d'injection
+ * @author Pierre-Loup Pissavy, Pierre Chevalier *
  */
 public class InjectionTest {
 
@@ -48,8 +44,6 @@ public class InjectionTest {
 		inService.m();
 		
 		assertNotNull(service.getService());
-		assertTrue(EJBContainer.getRealInstanceOfAService(inService) instanceof MyServiceInjection);
-		
+		assertTrue(EJBContainer.getRealInstanceOfAService(inService) instanceof MyServiceInjection);	
 	}
-
 }
